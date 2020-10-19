@@ -5,7 +5,7 @@ const sha256 = require('sha256');
 function Blockchain() {
   this.chain = []; //to hold all about blockchain stuff
   this.pendingTransactions = []; // hold all of the new transactions that are created before they are placed into a block.
-  // this.createNewBlock();
+  this.createNewBlock(100, '0', '0');
 }
 
 //this method will create a new block for us
@@ -24,7 +24,7 @@ Blockchain.prototype.createNewBlock = function (
     hash,
     previousBlockHash,
   };
-  this.newTransaction = [];
+  // this.newTransaction = [];
   this.chain.push(newBlock);
 
   return newBlock;

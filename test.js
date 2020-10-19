@@ -33,9 +33,10 @@ const currentBlockData = [
     sender: 'A4RIC9C0E5CD571',
   },
 ];
-const nonce = 100;
+const nonce = 106707;
 
 bitcoin.hashBlock(previousBlockHash, currentBlockData, nonce);
 
 //log out the bitcoin blockchain
-console.log(bitcoin.proofOfWork(previousBlockHash, currentBlockData));
+// console.log(bitcoin.hashBlock(previousBlockHash, currentBlockData, nonce));
+console.log(bitcoin);
