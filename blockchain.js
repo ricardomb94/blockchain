@@ -1,3 +1,6 @@
+//Import sha256
+const sha256 = require('sha256');
+
 //Constructor
 function Blockchain() {
   this.chain = []; //to hold all about blockchain stuff
@@ -49,7 +52,31 @@ Blockchain.prototype.createNewTransaction = function (
 
 //Create a new method: hashBlock.
 //What this method will do is take in a block from our blockchain and hash its data into a fixed length string.
-//blockdata parameter will be the input data of our block from which we want to generate the hash.
-Blockchain.prototype.hashBlock = function (blockdata) {};
+//parameters will be the input data of our block from which we want to generate the hash.
+
+Blockchain.prototype.hashBlock = function (
+  previousBlockHash,
+  currentBlockData,
+  nonce
+) {
+  const dataAsString =
+    previousBlockHash + nonce.toString() + JSON.stringify(currentBlockData);
+  const hash = sha256(dataAsString);
+  return hash;
+};
+
+Blockchain.prototype.proofOfWork = function (
+  previousBlockHash,
+  currentBlockData
+) {
+  let nonce = 0;
+  let hash = this.hashBlock(previousBlockHash, currentBlockData, nonce);
+  while (hash.substring(0, 4) !== '0000') {
+    nonce++;
+    hash = this.hashBlock(previousBlockHash, currentBlockData, nonce);
+  }
+
+  return nonce;
+};
 
 module.exports = Blockchain;
