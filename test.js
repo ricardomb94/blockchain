@@ -16,7 +16,6 @@ const bitcoin = new Blockchain();
 // bitcoin.createNewTransaction(500, 'SHELDT845SJ5TKCJ2', 'JENN5BG5DF6HT8NG9');
 
 const previousBlockHash = '87765DA6CCF0668238C1D27C35692E11';
-
 const currentBlockData = [
   {
     amount: 10,
@@ -39,4 +38,4 @@ const nonce = 100;
 bitcoin.hashBlock(previousBlockHash, currentBlockData, nonce);
 
 //log out the bitcoin blockchain
-console.log(bitcoin.hashBlock(previousBlockHash, currentBlockData, nonce));
+console.log(bitcoin.proofOfWork(previousBlockHash, currentBlockData));
